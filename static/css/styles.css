@@ -1,0 +1,11 @@
+body {
+    margin: 20px;
+}
+
+.done {
+    color: darkgreen;
+}
+
+.not-done {
+    color: darkred;
+}
