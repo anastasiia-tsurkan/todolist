@@ -3,11 +3,31 @@
 {% block content %}
   <h1>
     To do list
-    <a href="{% url '' %}">Add task</a>
+    <a href="{% url 'tasklist:task-create' %}">Add task</a>
   </h1>
   {% if tasks_list %}
     {% for task in tasks_list %}
-
+      <div>
+        <h3>
+          <strong>{{ task.content }}</strong>
+          {% if task.status %}
+            <span class="done">Done</span>
+          {% else %}
+            <span class="not-done">Not done</span>
+          {% endif %}
+        </h3>
+        <h4>
+          Created: {{ task.datetime }}
+          {% if task.deadline %}
+            <span>Deadline: {{ task.deadline }}</span>
+          {% endif %}
+        </h4>
+        <h3>
+          Tags: {{ task.tags }}
+          <a href="{% url 'tasklist:task-update' pk=task.id%}">Update</a>
+          <a href="{% url 'tasklist:task-delete' pk=task.id%}">Delete</a>
+        </h3>
+      </div>
     {% endfor %}
 
   {% endif %}
