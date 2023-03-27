@@ -1,5 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+  <h1>Tags</h1>
+  <h4><a href="{% url 'tasklist:tag-create' %}">Add</a></h4>
+  {% if tags_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      {% for tag in tags_list %}
+        <tr>
+          <td>{{ tag.name }}</td>
+          <td>
+            <a href="{% url 'tasklist:tag-update' pk=tag.id %}" class="">
+              Edit
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'tasklist:tag-delete' pk=tag.id %}" class="">
+              Delete
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There is no tag yet, add a first tag!</p>
+  {% endif %}
 {% endblock %}
