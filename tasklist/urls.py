@@ -5,3 +5,5 @@ from tasklist.views import index
 urlpatterns = [
     path("", index, name="index"),
 ]
+
+app_name = "tasklist"
