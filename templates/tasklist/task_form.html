@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h2 class="mb-0">{{ object|yesno:"Update,Create new" }} task</h2>
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" value="Save" class="custom-form">Save</button>
+  <button value="Cancel" onclick="history.back()" class="btn-outline-danger custom-form-cancel">Cancel</button>
+
+{% endblock %}

@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>To do list</h1>
+  <h1>
+    To do list
+    <a href="{% url '' %}">Add task</a>
+  </h1>
   {% if tasks_list %}
     {% for task in tasks_list %}
 
