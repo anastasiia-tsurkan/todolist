@@ -5,8 +5,8 @@
   <form action="" method="post">
     {% csrf_token %}
 
-    <button type="submit" value="Save" class="btn btn-outline-danger">Delete</button>
-    <button value="Cancel" onclick="history.back()" class="btn btn-success">Cancel</button>
+    <button type="submit" value="Delete" class="btn btn-outline-danger">Delete</button>
+    <a href="{% url 'tasklist:index' %}" class="btn btn-success">Cancel</a>
 
   </form>
 
