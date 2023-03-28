@@ -20,3 +20,9 @@ body {
 .add {
     float: right;
 }
+
+.h_line {
+    border-bottom: 1px solid dimgray;
+    width: 900px;
+    margin: auto;
+}
