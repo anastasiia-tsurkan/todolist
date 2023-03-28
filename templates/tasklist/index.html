@@ -12,10 +12,10 @@
         <h3>
           <strong>{{ task.content }}</strong>
           {% if task.status %}
-            <span class="done">Done</span>
+            <span class="done">Done </span>
             <a href="{% url 'tasklist:toggle-complete-task' pk=task.id %}" class="btn btn-secondary add">Undo</a>
           {% else %}
-            <span class="not-done">Not done</span>
+            <span class="not-done">Not done </span>
             <a href="{% url 'tasklist:toggle-complete-task' pk=task.id %}" class="btn btn-success add">Complete</a>
           {% endif %}
         </h3>
