@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Tags</h1>
-  <h4><a href="{% url 'tasklist:tag-create' %}">Add</a></h4>
+  <h4><a href="{% url 'tasklist:tag-create' %}" class="btn btn-info add">Add</a></h4>
   {% if tags_list %}
     <table class="table">
       <tr>

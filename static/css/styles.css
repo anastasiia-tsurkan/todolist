@@ -1,11 +1,22 @@
 body {
     margin: 20px;
+    padding: 20px;
 }
-
+.a {
+  text-decoration: none;
+}
 .done {
     color: darkgreen;
 }
 
 .not-done {
     color: darkred;
+}
+
+.deadline {
+    color: brown;
+}
+
+.add {
+    float: right;
 }
