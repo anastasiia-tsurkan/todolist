@@ -6,12 +6,6 @@ from .models import Task, Tag
 from .forms import TaskForm, TagForm
 
 
-# def index(request):
-#     return render(
-#         request,
-#         "tasklist/index.html"
-#     )
-
 class TaskList(generic.ListView):
     model = Task
     context_object_name = "tasks_list"
