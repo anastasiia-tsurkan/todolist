@@ -27,12 +27,12 @@
         </h4>
         <h3>
           Tags:
-            {% for tag in task.tags.all %}
-              {{ tag.name }}
-            {% endfor %}
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
 
-          <a href="{% url 'tasklist:task-update' pk=task.id%}" class="a">Update</a>
-          <a href="{% url 'tasklist:task-delete' pk=task.id%}" class="a">Delete</a>
+          <a href="{% url 'tasklist:task-update' pk=task.id %}" class="a">Update</a>
+          <a href="{% url 'tasklist:task-delete' pk=task.id %}" class="a">Delete</a>
         </h3>
       </div>
     {% endfor %}

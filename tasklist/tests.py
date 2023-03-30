@@ -31,4 +31,3 @@ class AllTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "tasklist/tags_list.html")
-

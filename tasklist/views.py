@@ -2,8 +2,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .models import Task, Tag
 from .forms import TaskForm, TagForm
+from .models import Task, Tag
 
 
 class TaskList(generic.ListView):
