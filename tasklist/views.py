@@ -1,22 +1,27 @@
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
-from .models import Task, Tag
 from .forms import TaskForm, TagForm
+from .models import Task, Tag
 
-
-# def index(request):
-#     return render(
-#         request,
-#         "tasklist/index.html"
-#     )
 
 class TaskList(generic.ListView):
     model = Task
     context_object_name = "tasks_list"
     template_name = "tasklist/index.html"
     queryset = Task.objects.prefetch_related("tags")
+
+
+class TaskCompletionView(View):
+    @staticmethod
+    def post(request, **kwargs):
+        task = Task.objects.get(id=kwargs["pk"])
+
+        task.status = request.POST.get("complete", not task.status)
+
+        task.save()
+        return redirect("tasklist:index")
 
 
 class TaskCreate(generic.CreateView):
@@ -58,13 +63,3 @@ class TagUpdate(generic.UpdateView):
 class TagDelete(generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("tasklist:tags-list")
-
-
-def toggle_complete_task(request, pk) -> HttpResponseRedirect:
-    task = Task.objects.get(id=pk)
-    if task.status:
-        task.status = False
-    else:
-        task.status = True
-    task.save()
-    return HttpResponseRedirect(reverse_lazy("tasklist:index"))

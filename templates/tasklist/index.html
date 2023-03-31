@@ -11,14 +11,18 @@
         <div class="h_line"></div>
         <h3>
           <strong>{{ task.content }}</strong>
+        </h3>
+        <form action="{% url 'tasklist:task-complete' pk=task.id %}" method="post">
+          {% csrf_token %}
           {% if task.status %}
             <span class="done">Done </span>
-            <a href="{% url 'tasklist:toggle-complete-task' pk=task.id %}" class="btn btn-secondary add">Undo</a>
+            <button value="Undo" class="btn btn-secondary add">Undo</button>
           {% else %}
             <span class="not-done">Not done </span>
-            <a href="{% url 'tasklist:toggle-complete-task' pk=task.id %}" class="btn btn-success add">Complete</a>
+            <button value="Complete" class="btn btn-success add">Complete</button>
           {% endif %}
-        </h3>
+        </form>
+
         <h4>
           Created: {{ task.datetime }}
           {% if task.deadline %}
@@ -27,12 +31,12 @@
         </h4>
         <h3>
           Tags:
-            {% for tag in task.tags.all %}
-              {{ tag.name }}
-            {% endfor %}
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
 
-          <a href="{% url 'tasklist:task-update' pk=task.id%}" class="a">Update</a>
-          <a href="{% url 'tasklist:task-delete' pk=task.id%}" class="a">Delete</a>
+          <a href="{% url 'tasklist:task-update' pk=task.id %}" class="a">Update</a>
+          <a href="{% url 'tasklist:task-delete' pk=task.id %}" class="a">Delete</a>
         </h3>
       </div>
     {% endfor %}
