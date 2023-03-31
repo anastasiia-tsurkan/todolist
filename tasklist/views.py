@@ -14,17 +14,14 @@ class TaskList(generic.ListView):
 
 
 class TaskCompletionView(View):
-    def post(self, request, **kwargs):
+    @staticmethod
+    def post(request, **kwargs):
         task = Task.objects.get(id=kwargs["pk"])
 
         task.status = request.POST.get("complete", not task.status)
-        # action = self.request.POST.get()
-        # if action:
-        #     task.status = not task.status
 
         task.save()
         return redirect("tasklist:index")
-        # return render(request, "tasklist/index.html", {"task": task})
 
 
 class TaskCreate(generic.CreateView):
@@ -66,33 +63,3 @@ class TagUpdate(generic.UpdateView):
 class TagDelete(generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("tasklist:tags-list")
-
-
-# class TaskComplete(generic.ListView):
-#     model = Task
-#
-#     def post(self, request, **kwargs):
-#         task = Task.objects.get(id=kwargs["pk"])
-#
-#         action = self.request.POST.get("task_status")
-#         if action:
-#             task.status = not task.status
-#
-#         task.save()
-#
-#         return render(request, "tasklist/index.html", {"task": task})
-
-
-    def get_object(self, queryset=None):
-        task = super().get_object()
-        task.status = not task.status
-        return task
-
-# def toggle_complete_task(request, pk) -> HttpResponseRedirect:
-#     task = Task.objects.get(id=pk)
-#     if task.status:
-#         task.status = False
-#     else:
-#         task.status = True
-#     task.save()
-#     return HttpResponseRedirect(reverse_lazy("tasklist:index"))
